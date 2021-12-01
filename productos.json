@@ -1,0 +1,40 @@
+[
+
+    {
+        "id": 1,
+        "nombre": "Zapatilla Nike",
+        "precio": 5000,
+        "img": "img/nike.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "zapatillas Addidas",
+        "precio": 6000,
+        "img": "./img/adiddas.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "zapatillas Puma",
+        "precio": 3500,
+        "img": "./img/puma.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "zapatillas diesel",
+        "precio": 7000,
+        "img": "./img/diesell.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "zapatillas Roxy",
+        "precio": 4500,
+        "img": "./img/roxy.jpg"
+    },
+    {
+        "id": 6,
+        "nombre": "zapatillas Salomon",
+        "precio": 4700,
+        "img": "./img/salomon.jpg"
+    }
+]
+
