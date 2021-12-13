@@ -4,37 +4,64 @@
         "id": 1,
         "nombre": "Zapatilla Nike",
         "precio": 5000,
-        "img": "img/nike.jpg"
+        "img": "img/nike.jpg",
+        "sexo" : "Hombre"
     },
     {
         "id": 2,
         "nombre": "zapatillas Addidas",
         "precio": 6000,
-        "img": "./img/adiddas.jpg"
+        "img": "./img/adiddas.jpg",
+        "sexo": "Hombre"
     },
     {
         "id": 3,
         "nombre": "zapatillas Puma",
         "precio": 3500,
-        "img": "./img/puma.jpg"
+        "img": "./img/puma.jpg",
+        "sexo": "Hombre"
     },
     {
         "id": 4,
         "nombre": "zapatillas diesel",
         "precio": 7000,
-        "img": "./img/diesell.jpg"
+        "img": "./img/diesell.jpg",
+        "sexo": "Hombre"
     },
     {
         "id": 5,
         "nombre": "zapatillas Roxy",
         "precio": 4500,
-        "img": "./img/roxy.jpg"
+        "img": "./img/roxy.jpg",
+        "sexo": "Mujer"
     },
     {
         "id": 6,
         "nombre": "zapatillas Salomon",
         "precio": 4700,
-        "img": "./img/salomon.jpg"
+        "img": "./img/salomon.jpg",
+        "sexo": "Hombre"
+    },
+    {
+        "id": 7,
+        "nombre": "zapatillas adidas Dama",
+        "precio": 9200,
+        "img": "./img/adiddasdama.jpeg",
+        "sexo": "Mujer"
+    },
+    {
+        "id": 8,
+        "nombre": "zapatillas Topperdam",
+        "precio": 6700,
+        "img": "./img/topperdama.jpg",
+        "sexo": "Mujer"
+    },
+    {
+        "id": 9,
+        "nombre": "zapatillas Columbia",
+        "precio": 9900,
+        "img": "./img/columbiadama.jpg",
+        "sexo": "Mujer"
     }
 ]
 

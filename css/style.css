@@ -7,6 +7,11 @@
     height: 300px;
 }
 
+.imgProductosCarrito {
+    width: 100px;
+    height: 100px;
+}
+
 #contenedorProductos {
     width: 100%;
     height: auto;
@@ -15,25 +20,23 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    
 }
 
-  
-  .logo {
+.logo {
     display: flex;
     justify-content: center;
     width: 50%;
     margin: auto;
-  }
-  
-  nav {
+}
+
+nav {
     background-color: rgb(255, 168, 7);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-  }
-  
-  #nro-carrito {
+}
+
+#nro-carrito {
     background-color: red;
     padding: 0.1rem;
     border-radius: 1rem;
@@ -42,15 +45,111 @@
     color: #ffff;
     pointer-events: none;
     margin: auto;
-  }
-  
-  .img-carrito {
+}
+
+.img-carrito {
     width: 2.5rem;
     margin: 0.5rem;
     margin-right: 2rem;
-
-
-  }
+}
 #mostarTotal {
     font-size: 20px;
+}
+
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#modal {
+    width: 500px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: black;
+    border: none;
+}
+
+#modal #carritoCerrar {
+    width: auto;
+    height: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: rgb(255, 168, 7);
+    border: none;
+}
+
+.modal-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tituloModal {
+    text-align: center;
+}
+
+.productoEnCarrito {
+    border-left: 5px solid rgb(255, 168, 7);
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.productoEnCarrito:hover {
+    border-left: 5px solid royalblue;
+}
+
+.boton-eliminar {
+    background-color: white;
+    color: red;
+    border: none;
+    font-size: 20px;
+}
+
+.boton-eliminar:hover {
+    cursor: pointer;
+}
+.boton-eliminar:focus {
+    outline: none;
+}
+
+#verCarrito {
+    border: none;
+    color: rgb(255, 168, 7);
+    font-size: 40px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: all 0.3s;
+}
+#verCarrito:hover {
+    cursor: pointer;
+    color: black;
+    background-color: rgb(255, 168, 7);
+}
+#verCarrito:focus {
+    outline: none;
 }
