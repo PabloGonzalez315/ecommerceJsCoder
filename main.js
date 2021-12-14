@@ -166,7 +166,7 @@ const finalizarCompra = async () => {
             description: prod.sexo,
             picture_url: prod.img,
             category_id: prod.id,
-            quantity: "1",
+            quantity: 1,
             currency_id: "ARS",
             unit_price: prod.precio,
         };
