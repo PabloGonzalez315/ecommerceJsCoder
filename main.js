@@ -121,14 +121,14 @@ filtroSexo.addEventListener("change", () => {
 function filtrarProductos() {
     const value = filtroSexo.value;
     if (value === "todos") {
-        traerDatos(producto);
+        mostrarProductos(productos);
     } else {
-        const filtrado = productosJSON.filter((prod) => prod.sexo === value);
+        const filtrado = productos.filter((prod) => prod.sexo === value);
         console.log(filtrado);
     }
 }
 
-//titulo con vanilla js
+//titulo con vanilla js ok
 
 titulo = document.getElementById("titulo");
 titulo.innerHTML = "<h1> Tienda de Zapatillas Online <h1>";
