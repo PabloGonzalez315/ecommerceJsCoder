@@ -1,18 +1,14 @@
+//declaracion de elementos DOM
 const vaciarCarrito = document.getElementById("vaciar-carrito");
 const contenedorCarrito = document.getElementById("carrito-contenedor");
 const contadorCarrito = document.getElementById("contadorCarrito");
 const precioTotal = document.getElementById("precioTotal");
 const filtroSexo = document.getElementById("filtroSexo");
 
-vaciarCarrito.addEventListener("click", () => {
-    carrito.length = 0;
-    vistaCarrito();
-    
-});
+//declaracion de carrito
+const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-let carrito = [];
-
-
+//declaracion de variable para cargar stock en json y mostrarlo en el html
 let productos = [];
 const cargarDatos = async () => {
     const resp = await fetch("./productos.json");
@@ -21,9 +17,12 @@ const cargarDatos = async () => {
     mostrarProductos(productos);
 };
 
+//llamada de funcion para cargar datos
 cargarDatos();
 
+//funcion para mostrar productos en el html
 function mostrarProductos(productos) {
+    contenedorProductos.innerHTML = "";
     productos.forEach((prod) => {
         $("#contenedorProductos").append(`<div class="card p-3 m-2">
                 <div class="card-body">
@@ -31,7 +30,7 @@ function mostrarProductos(productos) {
                 <h5 class="card-title"> Codigo: ${prod.id}</div>
                 <p class="card-text"><p> Para <strong>${prod.sexo}</strong></p>
                 <img src="${prod.img}" alt="${prod.nombre}" class="imgProductos" >
-                <button id ="agregar${prod.id}" class="btn btn-primary">Comprar por $${prod.precio} <i class="fas fa-shopping-cart"></i></a> </button>
+                <button id ="agregar${prod.id}" class="btn btn-warning">Comprar por $${prod.precio} <i class="fas fa-shopping-cart"></i></a> </button>
                 <div>
                 <p id="animacion${prod.id}agregada" class="agregado text-center fw-bold m-3" style="display: none">Se agregó al carrito</p>
                 <p id="animacion${prod.id}carrito" class="ver-carrito text-center fw-bold m-3" style="display: none">Mira tu lista en el carrito</p>
@@ -41,6 +40,7 @@ function mostrarProductos(productos) {
         $(`#agregar${prod.id}`).on("click", () => {
             agregarCarrito(prod.id);
         });
+        //animacion de agregar al carrito
         $(`#agregar${prod.id}`).on("click", function () {
             $(`#animacion${prod.id}agregada`)
                 .css("color", "#000")
@@ -50,8 +50,10 @@ function mostrarProductos(productos) {
                 .fadeOut(1000);
             $(`#animacion${prod.id}carrito`).css("color", "#000").css("font-size", "20px").delay(3000).fadeIn(1000).fadeOut(1000);
         });
+        //agrega producto al carrito y muestra el carrito
         const agregarCarrito = (prodId) => {
             const item = productos.find((prod) => prod.id === prodId);
+            
             carrito.push(item);
             console.log(carrito);
             vistaCarrito();
@@ -88,7 +90,7 @@ modalCarrito.addEventListener("click", (e) => {
     e.stopPropagation();
 });
 
-//Carrito en modal
+//vista del arrito en modal y suma de totales
 
 const vistaCarrito = () => {
     contenedorCarrito.innerHTML = "";
@@ -96,14 +98,15 @@ const vistaCarrito = () => {
         const div = document.createElement("div");
         div.classList.add("productoEnCarrito");
         div.innerHTML = ` <img src="${prod.img}" alt="${prod.nombre}" class="imgProductosCarrito" >
-                    <p>${prod.nombre}</p>
+        <p>${prod.nombre}</p>
                     <p>Precio: $${prod.precio}</p>
                     <button onclick= "eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>`;
-        contenedorCarrito.appendChild(div);
+                    contenedorCarrito.appendChild(div);
     });
     contadorCarrito.innerText = carrito.length;
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0);
 };
+
 //Eliminar producto del modal Carrito
 const eliminarDelCarrito = (prodId) => {
     const item = carrito.find((prod) => prod.id === prodId);
@@ -112,6 +115,13 @@ const eliminarDelCarrito = (prodId) => {
     vistaCarrito();
     console.log(carrito);
 };
+
+//funcion para vaciar el carrito
+vaciarCarrito.addEventListener("click", () => {
+    carrito.length = 0;
+    vistaCarrito();
+    
+});
 
 //Filtro por sexo
 filtroSexo.addEventListener("change", () => {
@@ -124,9 +134,12 @@ function filtrarProductos() {
         mostrarProductos(productos);
     } else {
         const filtrado = productos.filter((prod) => prod.sexo === value);
-        console.log(filtrado);
+        mostrarProductos(filtrado);
     }
 }
+
+
+
 
 //titulo con vanilla js ok
 
@@ -141,5 +154,35 @@ subTitulo.innerHTML = "Lista de Precios";
 subTitulo.classList.add("text-center");
 titulo.appendChild(subTitulo);
 
-/* traerDatos();
- */
+//Finalizar Compra Mercado Pago
+
+const finalizarCompra = async () => {
+    const carritoToMP = carrito.map((prod) => {
+        return {
+            title: prod.nombre,
+            description: prod.sexo,
+            picture_url: prod.img,
+            category_id: prod.id,
+            quantity: "",
+            currency_id: "ARS",
+            unit_price: prod.precio,
+        };
+    });
+
+    const resp = await fetch("https://api.mercadopago.com/checkout/preferences", {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer TEST-6814073526994942-121402-3a552daea3fe7e2cf9cc23a6dc7b987b-262140105",
+        },
+        body: JSON.stringify({
+            items: carritoToMP,
+            back_urls: {
+                success: window.location.href,
+                failure: window.location.href,
+            },
+        }),
+    });
+    const data = await resp.json();
+
+    window.location.replace(data.init_point);
+};

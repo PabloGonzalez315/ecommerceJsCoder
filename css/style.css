@@ -27,6 +27,14 @@
     justify-content: center;
     width: 50%;
     margin: auto;
+  
+}
+header {
+  background-color: rgb(255, 168, 7);
+}
+
+.foo {
+  background-color: rgb(255, 168, 7);
 }
 
 nav {
