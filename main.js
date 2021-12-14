@@ -154,6 +154,9 @@ subTitulo.innerHTML = "Lista de Precios";
 subTitulo.classList.add("text-center");
 titulo.appendChild(subTitulo);
 
+
+
+
 //Finalizar Compra Mercado Pago
 
 const finalizarCompra = async () => {
@@ -163,7 +166,7 @@ const finalizarCompra = async () => {
             description: prod.sexo,
             picture_url: prod.img,
             category_id: prod.id,
-            quantity: "",
+            quantity: "1",
             currency_id: "ARS",
             unit_price: prod.precio,
         };
@@ -186,3 +189,4 @@ const finalizarCompra = async () => {
 
     window.location.replace(data.init_point);
 };
+
